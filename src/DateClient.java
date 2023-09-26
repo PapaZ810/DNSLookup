@@ -29,8 +29,7 @@ public class DateClient
 			toServer = new DataOutputStream(server.getOutputStream());
 			fromServer = new DataInputStream(server.getInputStream());
 
-			toServer.writeBytes(args[1].strip() + "\r\n");
-			System.out.println("sent bytes");
+			toServer.writeBytes(args[1] + "\r\n");
 
 			System.out.println(fromServer.readUTF());
 		} catch (java.io.IOException ioe) {

@@ -29,9 +29,6 @@ public class Handler
 			fromClient = new DataInputStream(client.getInputStream());
 			toClient = new DataOutputStream(client.getOutputStream());
 
-			System.out.println("Connection accepted...");
-
-			System.out.println(fromClient.readUTF());
 			try {
 				hostAddress = InetAddress.getByName(fromClient.readUTF());
 

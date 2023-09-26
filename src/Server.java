@@ -34,7 +34,6 @@ public class  Server
 				 * and service the connection in a separate thread.
 				 */
 				Runnable task = new Connection(sock.accept());
-				System.out.println("Connection accepted...");
 				exec.execute(task);
 			}
 		}
