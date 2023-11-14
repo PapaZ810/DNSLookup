@@ -7,7 +7,7 @@
 import java.net.*;
 import java.io.*;
 
-public class DateClient
+public class DNSClient
 {
 	// the default port
 	public static final int PORT = 6052;
@@ -29,7 +29,7 @@ public class DateClient
 			toServer = new DataOutputStream(server.getOutputStream());
 			fromServer = new DataInputStream(server.getInputStream());
 
-			toServer.writeBytes(args[1] + "\r\n");
+			toServer.writeUTF(args[1]);
 
 			System.out.println(fromServer.readUTF());
 		} catch (java.io.IOException ioe) {

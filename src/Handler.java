@@ -9,10 +9,10 @@
 
 import java.io.*;
 import java.net.*;
+import java.util.Arrays;
 
 public class Handler 
 {
-	public static final int BUFFER_SIZE = 256;
 	
 	/**
 	 * this method is invoked by a separate thread
@@ -28,13 +28,14 @@ public class Handler
 			 */
 			fromClient = new DataInputStream(client.getInputStream());
 			toClient = new DataOutputStream(client.getOutputStream());
-
+			String clientInput = fromClient.readUTF();
 			try {
-				hostAddress = InetAddress.getByName(fromClient.readUTF());
+				hostAddress = InetAddress.getByName(clientInput);
 
-				toClient.writeBytes(hostAddress.getHostAddress() + "\r\n");
+				toClient.writeUTF(hostAddress.getHostAddress());
 			} catch (UnknownHostException uhe) {
 				System.err.println("Unknown host: " + uhe);
+				toClient.writeUTF("Unknown host: " + uhe);
 			}
 
 			toClient.close();
